@@ -1,4 +1,6 @@
 //unify blocProvider, routes and pages
+import 'package:tutor/app_folders/home/home_blocs/bloc.dart';
+import 'package:tutor/app_folders/home/home_page.dart';
 import 'package:tutor/auth/bloc/register_bloc.dart';
 import 'package:tutor/auth/bloc/sign_in_bloc.dart';
 import 'package:tutor/auth/register.dart';
@@ -34,7 +36,10 @@ class AppPages{
       PageEntity(routes: AppRoutes.ROOTPAGE,
         pages: const RootPage(),
         bloc: BlocProvider(create: (_)=> RootBlocs(),),
-
+      ),
+      PageEntity(routes: AppRoutes.HOMEPAGE,
+        pages: const HomePage(),
+        bloc: BlocProvider(create: (_)=> HomePageBlocs(),),
       ),
     ];
   }

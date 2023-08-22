@@ -3,4 +3,5 @@ class AppRoutes{
   static const ROOTPAGE = '/rootPage';
   static const SIGNIN = '/signIn';
   static const REGISTER = '/register';
+  static const HOMEPAGE = '/homePage';
 }
