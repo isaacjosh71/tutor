@@ -2,15 +2,16 @@ import 'package:tutor/Utilities/values/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-AppBar buildAppBar(String type){
+AppBar buildAppBar(){
   return AppBar(
+    automaticallyImplyLeading: false,
     bottom: PreferredSize(
         preferredSize: const Size.fromHeight(1.0),
         child: Container(
           color: AppColors.primarySecondaryBackground, height: 1.0,
         )),
     title: Center(
-      child: Text(type,
+      child: Text('Sign Up',
         style: TextStyle(
             color: AppColors.primaryText, fontWeight: FontWeight.normal,
             fontSize: 16.sp
@@ -105,6 +106,7 @@ Widget forgotPassword(){
     ),
   );
 }
+
 Widget buildLogInAndRegButton(String buttonName, String buttonType, void Function()? func){
   return GestureDetector(
     onTap: func,

@@ -62,6 +62,7 @@ class AppPages{
           }
           return MaterialPageRoute(builder: (_)=>const SignIn(), settings: settings);
         }
+        print('valid route name ${settings.name}');
         return MaterialPageRoute(builder: (_)=>results.first.pages, settings: settings);
       }
     }

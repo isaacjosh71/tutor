@@ -60,8 +60,6 @@ class SignInController{
          }
        }
      }
-    } catch(e){
-
-    }
+    } catch(e){}
   }
 }

@@ -19,8 +19,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [...AppPages.allBlocProviders(context)],
-        child: ScreenUtilInit(builder:
-            (context, child)=> MaterialApp(
+        child: ScreenUtilInit(
+          designSize: const Size(375, 812),
+          builder: (context, child)=> MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               appBarTheme: const AppBarTheme(

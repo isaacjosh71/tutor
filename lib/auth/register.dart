@@ -1,5 +1,5 @@
 import 'package:tutor/auth/bloc/register_bloc.dart';
-import 'package:tutor/auth/bloc/register_controller.dart';
+import 'package:tutor/auth/widgets/register_controller.dart';
 import 'package:tutor/auth/bloc/register_event.dart';
 import 'package:tutor/auth/bloc/register_state.dart';
 import 'package:tutor/auth/widgets/register_widget.dart';
@@ -23,7 +23,7 @@ class _RegisterState extends State<Register> {
         child: SafeArea(
           child: Scaffold(
             backgroundColor: Colors.white,
-            appBar: buildAppBar('Sign Up'),
+            appBar: buildAppBar(),
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +33,7 @@ class _RegisterState extends State<Register> {
                   ),
                   Center(child: reUsableText('Enter your details below and free sign up')),
                   Container(
-                    margin: EdgeInsets.only(top: 36.h),
+                    margin: EdgeInsets.only(top: 60.h),
                     padding: EdgeInsets.only(left: 25.w, right: 25.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,8 +66,8 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: 25.w),
-                    child: reUsableText('Enter your details below and free sign up'),
+                    margin: EdgeInsets.only(left: 25.w, right: 25.w),
+                    child: reUsableText('By creating an account you have to agree to our terms and conditions'),
                   ),
                   buildLogInAndRegButton('Sign Up', 'login', (){
                     RegisterController(context: context).handleEmailRegister();})

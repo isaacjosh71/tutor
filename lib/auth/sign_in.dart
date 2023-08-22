@@ -1,5 +1,5 @@
 import 'package:tutor/auth/bloc/sign_in_bloc.dart';
-import 'package:tutor/auth/bloc/sign_in_controller.dart';
+import 'package:tutor/auth/widgets/sign_in_controller.dart';
 import 'package:tutor/auth/bloc/sign_in_events.dart';
 import 'package:tutor/auth/bloc/sign_in_state.dart';
 import 'package:tutor/auth/widgets/sign_in_widget.dart';
@@ -53,6 +53,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 forgotPassword(),
+                SizedBox(height: 70.h,),
                 buildLogInAndRegButton('Log In', 'login', (){
                   SignInController(context: context).handleSignIn('email');
                 }),

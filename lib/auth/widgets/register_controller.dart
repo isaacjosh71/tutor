@@ -28,7 +28,7 @@ class RegisterController{
       toastInfo(msg: 'You need to fill in email');
       return;
     }
-    if(rePassword.isEmpty&&rePassword==password){
+    if(rePassword.isEmpty){
       toastInfo(msg: 'Your password confirmation is wrong');
       return;
     }
@@ -40,22 +40,23 @@ class RegisterController{
         await credential.user?.updateDisplayName(userName);
         toastInfo(msg: 'An email has been sent to your registered email. To activate, please click the link sent to your email.');
         Navigator.of(context).pop();
-        // return;
+        return;
       }
-      // if(!credential.user!.emailVerified){
-      //   toastInfo(msg: 'You need to verify email');
-      //   return;
-      // }
-      // var user = credential.user;
-      // if(user!=null){
-      //   print('user exist');
-      //   //we got verified user from firebase
-      // } else{
-      //   toastInfo(msg: 'Currently you are not a user on this app');
-      //   return;
-      //   //error getting user from firebase
-      // }
-    } on FirebaseAuthException catch(e){
+      if(!credential.user!.emailVerified){
+        toastInfo(msg: 'You need to verify email');
+        return;
+      }
+      var user = credential.user;
+      if(user!=null){
+        print('user exist');
+        //we got verified user from firebase
+      } else{
+        toastInfo(msg: 'Currently you are not a user on this app');
+        return;
+        //error getting user from firebase
+      }
+    }
+    on FirebaseAuthException catch(e){
       if (e.code == 'weak-password'){
         toastInfo(msg: 'The password provided is too weak');
       } else if (e.code=='email-already-in-use'){
