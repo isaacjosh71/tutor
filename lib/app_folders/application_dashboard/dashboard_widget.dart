@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutor/app_folders/home/home_page.dart';
+import 'package:tutor/app_folders/profile/profile_screen.dart';
 import '../../Utilities/values/colors.dart';
 
 Widget buildPage(int index){
@@ -9,7 +10,7 @@ Widget buildPage(int index){
     Center(child: Text('Search'),),
     Center(child: Text('Course'),),
     Center(child: Text('Chat'),),
-    Center(child: Text('Profile'),),
+    const ProfilePage()
   ];
 
   return widget[index];
