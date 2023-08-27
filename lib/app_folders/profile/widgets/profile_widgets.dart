@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutor/Utilities/routers/routes.dart';
 import 'package:tutor/Utilities/values/colors.dart';
+import 'package:tutor/Utilities/widget/global_text.dart';
+import 'package:tutor/auth/widgets/register_widget.dart';
 
 AppBar buildProfileAppBar(){
   return AppBar(
@@ -13,11 +15,7 @@ AppBar buildProfileAppBar(){
             width: 18.w, height: 12.h,
             child: Image.asset('assets/icons/menu.png'),
           ),
-          Text('Profile',
-          style: TextStyle(fontSize: 16.sp, color: AppColors.primaryText,
-          fontWeight: FontWeight.bold
-          ),
-          ),
+          reGlobalUsableText('Profile'),
           SizedBox(
             width: 24.w, height: 24.h,
             child: Image.asset('assets/icons/more-vertical.png'),
@@ -48,7 +46,7 @@ var profileOptions=<String, String>{
   'Setting':'settings.png',
   'Payment details':'credit-card.png',
   'Achievement': 'award.png',
-  'love':'heart(1).png.',
+  'love':'heart(1).png',
   'Reminders': "cube.png"
 };
 Widget buildListView(BuildContext context){

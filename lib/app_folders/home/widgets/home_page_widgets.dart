@@ -7,6 +7,7 @@ import 'package:tutor/Utilities/values/colors.dart';
 import 'package:tutor/app_folders/home/home_blocs/event.dart';
 import 'package:tutor/app_folders/home/home_blocs/state.dart';
 
+import '../../../Utilities/widget/global_text.dart';
 import '../home_blocs/bloc.dart';
 
 AppBar buildHomeAppBar(){
@@ -181,10 +182,10 @@ Widget menuView(){
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            _reUsableText('Choose your course'),
+            reGlobalUsableText('Choose your course'),
             GestureDetector(
               onTap: (){},
-                child: _reUsableText('See all', color: AppColors.primaryThreeElementText, fontSize: 14))
+                child: reGlobalUsableText('See all', color: AppColors.primaryThreeElementText, fontSize: 14))
           ],
         ),
       ),
@@ -204,16 +205,6 @@ Widget menuView(){
   );
 }
 
-Widget _reUsableText(String text, {Color color= AppColors.primaryElement,
-  int fontSize=16, FontWeight fontWeight = FontWeight.bold}){
-  return Text(text,
-    style: TextStyle(
-        color: color,
-        fontWeight: fontWeight, fontSize: fontSize.sp
-    ),
-  );
-}
-
 Widget _reUseAbleMenuBars(String menuText,
     {Color textColor = AppColors.primaryElementText,
       Color backGroundColor = AppColors.primaryElement, Color borderColor = AppColors.primaryElement}){
@@ -225,7 +216,7 @@ Widget _reUseAbleMenuBars(String menuText,
         border: Border.all(color: borderColor.withOpacity(0.5))
     ),
     padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 5.h, bottom: 5.h),
-    child: _reUsableText(menuText, color: textColor.withOpacity(0.7),
+    child: reGlobalUsableText(menuText, color: textColor.withOpacity(0.7),
         fontSize: 13, fontWeight: FontWeight.normal),
   );
 }

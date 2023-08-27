@@ -24,7 +24,7 @@ class _RootPageState extends State<RootPage> {
           child: Scaffold(
             body: buildPage(state.index),
             bottomNavigationBar: Container(
-              width: 375.w, height: 50.h,
+              width: 375.w, height: 53.h,
               decoration: BoxDecoration(
                   color: AppColors.primaryElement,
                   borderRadius: BorderRadius.only(

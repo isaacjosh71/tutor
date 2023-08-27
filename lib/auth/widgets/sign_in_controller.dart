@@ -1,3 +1,4 @@
+import 'package:tutor/Utilities/entities/entities.dart';
 import 'package:tutor/Utilities/services/global.dart';
 import 'package:tutor/Utilities/values/constants.dart';
 import 'package:tutor/Utilities/widget/flutter_toast.dart';
@@ -41,6 +42,20 @@ class SignInController{
          }
          var user = credential.user;
          if(user!=null){
+           String? displayName = user.displayName;
+           String? email = user.email;
+           String? id = user.uid;
+           String? photoUrl = user.photoURL;
+
+           LoginRequestEntity loginRequestEntity = LoginRequestEntity();
+           loginRequestEntity.avatar = photoUrl;
+           loginRequestEntity.email = email;
+           loginRequestEntity.open_id = id;
+           loginRequestEntity.name = displayName;
+
+           //type 1 indicates email login
+           loginRequestEntity.type = 1;
+
            print('user exist');
            Global.storageServices.setString(AppConsts.USER_TOKEN_KEY, '1234567');
            Navigator.of(context).pushNamedAndRemoveUntil('/rootPage', (route) => false);
@@ -61,5 +76,9 @@ class SignInController{
        }
      }
     } catch(e){}
+  }
+
+  void asyncPostAllData(){
+
   }
 }
