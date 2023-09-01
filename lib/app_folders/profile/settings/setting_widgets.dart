@@ -31,6 +31,7 @@ Widget logOutButton(BuildContext context){
             TextButton(onPressed: (){
               context.read<RootBlocs>().add(const TriggerRootEvent(0));
               Global.storageServices.remove(AppConsts.USER_TOKEN_KEY);
+              Global.storageServices.remove(AppConsts.USER_PROFILE_KEY);
               Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.SIGNIN, (route) => false);
             },
                 child: const Text('Confirm')),

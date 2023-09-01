@@ -1,4 +1,5 @@
 
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:tutor/Utilities/routers/routes.dart';
 import 'package:tutor/Utilities/values/colors.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         child: ScreenUtilInit(
           designSize: const Size(375, 812),
           builder: (context, child)=> MaterialApp(
+            builder: EasyLoading.init(),
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               appBarTheme: const AppBarTheme(

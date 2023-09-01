@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutor/Utilities/values/colors.dart';
+import 'package:tutor/Utilities/values/constants.dart';
 import 'package:tutor/app_folders/home/home_blocs/event.dart';
 import 'package:tutor/app_folders/home/home_blocs/state.dart';
-
 import '../../../Utilities/widget/global_text.dart';
 import '../home_blocs/bloc.dart';
 
-AppBar buildHomeAppBar(){
+AppBar buildHomeAppBar(String avatar){
   return AppBar(
     title: Container(
       margin: EdgeInsets.only(left: 7.w, right: 7.w),
@@ -25,9 +25,9 @@ AppBar buildHomeAppBar(){
           GestureDetector(
             child: Container(
               width: 40.w, height: 40.w,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(image:
-                AssetImage('assets/icons/person.png'))
+                NetworkImage('${AppConsts.SERVER_API_URI}$avatar'))
               ),
             ),
           )

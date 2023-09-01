@@ -1,3 +1,4 @@
+import 'package:tutor/Utilities/values/constants.dart';
 import 'package:tutor/auth/bloc/register_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,8 @@ class RegisterController{
       if(credential.user!=null){
         await credential.user?.sendEmailVerification();
         await credential.user?.updateDisplayName(userName);
+        String photoUrl = 'uploads/default.png';
+        await credential.user?.updatePhotoURL(photoUrl);
         toastInfo(msg: 'An email has been sent to your registered email. To activate, please click the link sent to your email.');
         Navigator.of(context).pop();
         return;

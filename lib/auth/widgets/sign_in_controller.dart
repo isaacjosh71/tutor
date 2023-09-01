@@ -1,10 +1,14 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:tutor/Utilities/entities/entities.dart';
+import 'package:tutor/Utilities/repositories/user_repo.dart';
 import 'package:tutor/Utilities/services/global.dart';
 import 'package:tutor/Utilities/values/constants.dart';
 import 'package:tutor/Utilities/widget/flutter_toast.dart';
 import 'package:tutor/auth/bloc/sign_in_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignInController{
@@ -14,7 +18,6 @@ class SignInController{
   void handleSignIn(String type) async{
     try{
      if(type=='email'){
-       //BlocProvider.of<SignInBloc>(context).state
        final state = context.read<SignInBloc>().state;
        String emailAddress = state.email;
        String password = state.password;
@@ -57,8 +60,9 @@ class SignInController{
            loginRequestEntity.type = 1;
 
            print('user exist');
-           Global.storageServices.setString(AppConsts.USER_TOKEN_KEY, '1234567');
-           Navigator.of(context).pushNamedAndRemoveUntil('/rootPage', (route) => false);
+           asyncPostAllData(
+               loginRequestEntity
+           );
            //we got verified user from firebase
          } else{
            toastInfo(msg: 'Currently you are not a user on this app');
@@ -78,7 +82,31 @@ class SignInController{
     } catch(e){}
   }
 
-  void asyncPostAllData(){
-
+  void asyncPostAllData(
+      LoginRequestEntity loginRequestEntity
+      ) async {
+    EasyLoading.show(
+      indicator: const CircularProgressIndicator(),
+      maskType: EasyLoadingMaskType.clear,
+      dismissOnTap: true
+    );
+    // Global.storageServices.setString(AppConsts.USER_TOKEN_KEY, '12345');
+    // EasyLoading.dismiss();
+    // Navigator.of(context).pushNamedAndRemoveUntil('/rootPage', (route) => false);
+    var result = await UserRepo.login(params: loginRequestEntity);
+    if(result.code==200){
+      try{
+        Global.storageServices.setString(AppConsts.USER_PROFILE_KEY, jsonEncode(result.data));
+        Global.storageServices.setString(AppConsts.USER_TOKEN_KEY, result.data!.access_token!);
+        EasyLoading.dismiss();
+        Navigator.of(context).pushNamedAndRemoveUntil('/rootPage', (route) => false);
+      }catch(e){
+        print('saving local storage error ${e.toString()}');
+      }
+    }
+    else{
+      EasyLoading.dismiss();
+      toastInfo(msg: 'unknown error');
+    }
   }
 }
