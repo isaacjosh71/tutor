@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutor/Utilities/widget/global_text.dart';
 import 'package:tutor/app_folders/application_dashboard/root_bloc/root_bloc.dart';
+import 'package:tutor/app_folders/home/home_blocs/bloc.dart';
+import 'package:tutor/app_folders/home/home_blocs/event.dart';
 import '../../../Utilities/routers/names.dart';
 import '../../../Utilities/services/global.dart';
 import '../../../Utilities/values/constants.dart';
@@ -30,6 +32,7 @@ Widget logOutButton(BuildContext context){
                 child: const Text('Cancel')),
             TextButton(onPressed: (){
               context.read<RootBlocs>().add(const TriggerRootEvent(0));
+              context.read<HomePageBlocs>().add(HomePageDots(0));
               Global.storageServices.remove(AppConsts.USER_TOKEN_KEY);
               Global.storageServices.remove(AppConsts.USER_PROFILE_KEY);
               Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.SIGNIN, (route) => false);

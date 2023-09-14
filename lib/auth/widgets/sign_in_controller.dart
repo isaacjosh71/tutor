@@ -84,7 +84,7 @@ class SignInController{
 
   void asyncPostAllData(
       LoginRequestEntity loginRequestEntity
-      ) async {
+      ) async{
     EasyLoading.show(
       indicator: const CircularProgressIndicator(),
       maskType: EasyLoadingMaskType.clear,

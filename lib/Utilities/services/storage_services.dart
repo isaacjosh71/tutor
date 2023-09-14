@@ -31,6 +31,10 @@ class StorageServices{
     return _prefs.getString(AppConsts.USER_TOKEN_KEY)==null?false:true;
   }
 
+  String getUserToken(){
+    return _prefs.getString(AppConsts.USER_TOKEN_KEY)??'';
+  }
+
   //remove key
   Future<bool> remove(String key){
     return _prefs.remove(key);

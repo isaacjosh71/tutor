@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tutor/Utilities/routers/names.dart';
 import 'package:tutor/Utilities/values/colors.dart';
+import 'package:tutor/Utilities/values/constants.dart';
 import 'package:tutor/app_folders/home/home_blocs/bloc.dart';
 import 'package:tutor/app_folders/home/home_blocs/state.dart';
 import 'package:tutor/app_folders/home/widgets/home_controller.dart';
@@ -62,11 +64,16 @@ class _HomePageState extends State<HomePage> {
                         crossAxisCount: 2, mainAxisSpacing: 15.h,
                         crossAxisSpacing: 15.w, childAspectRatio: 1.5),
                     delegate: SliverChildBuilderDelegate(
-                        childCount: 4,
+                        childCount: state.courseItem.length,
                             (BuildContext context, int index){
                           return GestureDetector(
-                            onTap: (){},
-                            child: courseGrid(),
+                            onTap: (){
+                              Navigator.of(context).pushNamed(AppRoutes.COURSEDETAILPAGE,
+                              arguments: {
+                                    'id': state.courseItem.elementAt(index).id
+                                  });
+                            },
+                            child: courseGrid(state.courseItem[index]),
                           );
                         }
                     ),

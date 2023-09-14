@@ -1,4 +1,6 @@
 //unify blocProvider, routes and pages
+import 'package:tutor/app_folders/home/course/course_detail.dart';
+import 'package:tutor/app_folders/home/course/course_detail_blocs/blocs.dart';
 import 'package:tutor/app_folders/home/home_blocs/bloc.dart';
 import 'package:tutor/app_folders/home/home_page.dart';
 import 'package:tutor/app_folders/profile/settings/bloc/blocs.dart';
@@ -46,6 +48,10 @@ class AppPages{
       PageEntity(routes: AppRoutes.SETTINGSPAGE,
         pages: const SettingsPage(),
         bloc: BlocProvider(create: (_)=> SettingBlocs(),),
+      ),
+      PageEntity(routes: AppRoutes.COURSEDETAILPAGE,
+        pages: const CourseDetail(),
+        bloc: BlocProvider(create: (_)=> CourseDetailBloc(),),
       ),
     ];
   }

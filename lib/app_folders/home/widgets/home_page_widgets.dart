@@ -3,6 +3,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tutor/Utilities/entities/course.dart';
 import 'package:tutor/Utilities/values/colors.dart';
 import 'package:tutor/Utilities/values/constants.dart';
 import 'package:tutor/app_folders/home/home_blocs/event.dart';
@@ -221,20 +222,23 @@ Widget _reUseAbleMenuBars(String menuText,
   );
 }
 
-Widget courseGrid(){
+Widget courseGrid(CourseItem item){
   return Container(
     padding: EdgeInsets.all(12.w),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.r),
-        image: const DecorationImage(
+        image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage('assets/icons/Image(1).png'))
+            image: NetworkImage(
+              AppConsts.SERVER_UPLOADS+item.thumbnail!
+            ))
     ),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Best course for IT and Engineering',
+        Text(
+          item.name??'',
           maxLines: 1, overflow: TextOverflow.fade,
           textAlign: TextAlign.left, softWrap: false,
           style: TextStyle(
@@ -243,7 +247,8 @@ Widget courseGrid(){
           ),
         ),
         SizedBox(height: 5.h,),
-        Text('Flutter best course',
+        Text(
+          item.description??'',
           maxLines: 1, overflow: TextOverflow.fade,
           textAlign: TextAlign.left, softWrap: false,
           style: TextStyle(
